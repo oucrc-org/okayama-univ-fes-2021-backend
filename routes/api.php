@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\API\UserController;
+use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Twitterの投稿一覧を
+Route::get('/posts', [PostController::class, 'posts']);
 
 Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::get('/getProfile', [UserController::class, 'getProfile']);
