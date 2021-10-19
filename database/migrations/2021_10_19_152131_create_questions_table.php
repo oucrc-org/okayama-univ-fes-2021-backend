@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('google_id')->unique();
-            $table->string('display_name');
-            $table->string('email')->unique();
-            $table->boolean('email_verified');
-            $table->string('avatar_url');
+
+            $table->foreignId('club_id')->constrained('clubs')->onDelete('cascade');
+
+            $table->string('quiz')->comment('クイズの内容');
+
+            $table->integer('number')->comment('問題の番号');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('questions');
     }
 }
