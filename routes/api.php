@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 // Twitterの投稿一覧を
 Route::get('/posts', [PostController::class, 'posts']);
 
+Route::middleware('auth.client')->group(function () {
+    Route::post('/saveTweet', [PostController::class, 'saveTweet']);
+    Route::post('/setVisible/{id}', [PostController::class, 'setVisible']);
+});
+
 Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::get('/getProfile', [UserController::class, 'getProfile']);
 });
