@@ -24,6 +24,8 @@ class CreatePresentUserTable extends Migration
                 ->comment('一人に一個まで申し込み可能')
                 ->constrained('users')
                 ->onDelete('cascade');
+
+            $table->integer('stamps');
             $table->timestamps();
         });
     }
