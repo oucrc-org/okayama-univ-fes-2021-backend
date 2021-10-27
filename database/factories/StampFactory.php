@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Club;
+use App\Models\Stamp;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ClubFactory extends Factory
+class StampFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Club::class;
+    protected $model = Stamp::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,7 @@ class ClubFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'stamp_image_path' => $this->faker->imageUrl,
+            'image_path' => $this->faker->imageUrl,
         ];
     }
 }

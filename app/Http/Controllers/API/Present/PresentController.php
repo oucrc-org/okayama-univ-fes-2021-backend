@@ -22,7 +22,9 @@ class PresentController extends Controller
         try {
             $data = $this->mPresent->query()
                 ->get()
-                ->only(['id', 'name', 'image_path', 'required_stamps', 'stock']);
+                ->map(function ($item){
+                    return $item->only(['id', 'name', 'image_path', 'required_stamps', 'stock']);
+                });
 
             return response()->json([
                 'success' => true,

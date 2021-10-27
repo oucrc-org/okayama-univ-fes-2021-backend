@@ -27,7 +27,8 @@ Route::middleware('auth.client')->group(function () {
 });
 
 Route::middleware(['auth.token', 'user.create'])->group(function () {
-    Route::get('/getProfile', [UserController::class, 'getProfile']);
+
+    Route::get('/user', [UserController::class, 'get']);
 
     Route::get('/question', [QuestionController::class, 'get']);
     Route::post('/answer', [AnswerController::class, 'post']);
