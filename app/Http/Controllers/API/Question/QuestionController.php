@@ -37,7 +37,7 @@ class QuestionController extends Controller
                 ->toArray();
 
             //返すJsonを作成
-            $data = array_merge($question->only(['id', 'quiz']), ['answers' => $answers]);
+            $data = array_merge($question->only(['id', 'quiz', 'hint']), ['answers' => $answers]);
 
             return response()->json([
                 'success' => true,

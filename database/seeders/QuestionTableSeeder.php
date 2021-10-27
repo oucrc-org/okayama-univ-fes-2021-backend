@@ -21,6 +21,7 @@ class QuestionTableSeeder extends Seeder
             $apply[] = [
                 'club_id' => 1,
                 'quiz' => 'quiz' . $i,
+                'hint' => 'hint' . $i,
                 'finished_at' => $dt,
             ];
             $dt = $dt->copy()->addDay();

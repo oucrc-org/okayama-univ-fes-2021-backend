@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Present\PresentController;
 use App\Http\Controllers\API\Question\AnswerController;
 use App\Http\Controllers\API\Question\QuestionController;
 use App\Http\Controllers\API\UserController;
@@ -30,4 +31,6 @@ Route::middleware(['auth.token', 'user.create'])->group(function () {
 
     Route::get('/question', [QuestionController::class, 'get']);
     Route::post('/answer', [AnswerController::class, 'post']);
+
+    Route::get('/presents', [PresentController::class, 'get']);
 });
