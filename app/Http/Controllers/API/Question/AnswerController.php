@@ -18,6 +18,7 @@ class AnswerController extends Controller
     {
         $this->mQuestion = $question;
     }
+
     public function post(AnswerRequest $request): JsonResponse
     {
 
