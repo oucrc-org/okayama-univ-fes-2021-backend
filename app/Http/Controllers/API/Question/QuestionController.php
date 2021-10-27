@@ -47,7 +47,7 @@ class QuestionController extends Controller
         }
         catch (ModelNotFoundException $e)
         {
-            return response()->json(['success' => false, 'message' => $e]);
+            return response()->json(['success' => false, 'message' => $e], 500);
         }
     }
 }

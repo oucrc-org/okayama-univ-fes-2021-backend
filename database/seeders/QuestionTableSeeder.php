@@ -23,7 +23,7 @@ class QuestionTableSeeder extends Seeder
                 'quiz' => 'quiz' . $i,
                 'finished_at' => $dt,
             ];
-            $dt = $dt->copy()->subDay();
+            $dt = $dt->copy()->addDay();
         }
         DB::table('questions')->insert($apply);
     }
