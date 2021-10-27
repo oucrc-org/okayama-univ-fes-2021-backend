@@ -20,7 +20,7 @@ class CreateQuestionsTable extends Migration
 
             $table->string('quiz')->comment('クイズの内容');
 
-            $table->integer('number')->comment('問題の番号');
+            $table->dateTime('finished_at')->comment('終了時刻');
             $table->timestamps();
         });
     }
