@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Question\AnswerController;
 use App\Http\Controllers\API\Question\QuestionController;
+use App\Http\Controllers\API\Twitter\TwitterController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::get('/question', [QuestionController::class, 'get']);
     Route::post('/answer', [AnswerController::class, 'post']);
 });
+
+Route::get('/twitter',[TwitterController::class, 'get']);
