@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\Present\PresentController;
+use App\Http\Controllers\API\Present\PresentFormController;
 use App\Http\Controllers\API\Question\AnswerController;
 use App\Http\Controllers\API\Question\QuestionController;
 use App\Http\Controllers\API\Twitter\TwitterController;
@@ -27,10 +29,16 @@ Route::middleware('auth.client')->group(function () {
 });
 
 Route::middleware(['auth.token', 'user.create'])->group(function () {
-    Route::get('/getProfile', [UserController::class, 'getProfile']);
+
+    Route::get('/user', [UserController::class, 'get']);
 
     Route::get('/question', [QuestionController::class, 'get']);
     Route::post('/answer', [AnswerController::class, 'post']);
+
+    Route::get('/presents', [PresentController::class, 'get']);
+
+    Route::get('/present-form', [PresentFormController::class, 'get']);
+    Route::post('/present-form', [PresentFormController::class, 'post']);
 });
 
 Route::get('/twitter',[TwitterController::class, 'get']);

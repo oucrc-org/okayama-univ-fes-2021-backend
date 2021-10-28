@@ -16,9 +16,11 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('club_id')->constrained('clubs')->onDelete('cascade');
+            $table->foreignId('stamp_id')->constrained('stamps')->onDelete('cascade');
 
             $table->string('quiz')->comment('クイズの内容');
+
+            $table->string('hint')->comment('ヒント');
 
             $table->dateTime('finished_at')->comment('終了時刻');
             $table->timestamps();
