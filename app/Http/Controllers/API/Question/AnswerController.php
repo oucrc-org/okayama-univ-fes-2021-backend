@@ -35,27 +35,25 @@ class AnswerController extends Controller
                 ->pluck('id')
                 ->toArray();
 
-            //指定された問題が本日の問題と同じでかつ
-            //答えが正しければ
-            if(
-                $request->input('question_id') == $question->id &&
-                in_array($request->input('answer_id'), $answers)
-            ){
+            //指定された問題が本日の問題と同じかどうか
+            if ($request->input('question_id') == $question->id) {
+                //答えが正しければ
+                if (in_array($request->input('answer_id'), $answers)) {
 
-                //まだデータベースに登録されていなければ登録する
-                if($question->users->where('id', auth()->id())->isEmpty())
-                {
-                    $question->users()->attach(auth()->id());
+                    //まだデータベースに登録されていなければ登録する
+                    if ($question->users->where('id', auth()->id())->isEmpty()) {
+                        $question->users()->attach(auth()->id());
+                    }
+
+                    return response()->json(['success' => true, 'is_correct' => true]);
                 }
 
-                return response()->json(['success' => true, 'is_correct' => true]);
+                return response()->json(['success' => true, 'is_correct' => false]);
+            } else {
+                return response()->json(['success' => false, 'message' => 'You can\'t answer this question.'], 403);
             }
 
-            return response()->json(['success' => true, 'is_correct' => false]);
-
-        }
-        catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['success' => false, 'message' => $e], 500);
         }
     }

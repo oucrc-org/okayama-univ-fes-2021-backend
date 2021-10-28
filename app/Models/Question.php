@@ -18,7 +18,7 @@ class Question extends Model
         return self::query()
             ->where('finished_at', '>', $date)
             ->orderBy('finished_at')
-            ->select('id', 'quiz')
+            ->select('id', 'quiz', 'hint')
             ->with('answers')
             ->firstOrFail();
     }
