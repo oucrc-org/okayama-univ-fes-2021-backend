@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Question::class);
     }
+
+    public function present(): BelongsToMany
+    {
+        return $this->belongsToMany(Present::class);
+    }
 }
