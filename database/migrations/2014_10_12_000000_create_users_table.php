@@ -20,6 +20,16 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->boolean('email_verified');
             $table->string('avatar_url');
+
+            $table->string('family_name')->nullable();
+            $table->string('given_name')->nullable();
+            $table->string('family_name_kana')->nullable();
+            $table->string('given_name_kana')->nullable();
+            $table->string('secondary_email')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('address')->nullable();
+
             $table->timestamps();
         });
     }

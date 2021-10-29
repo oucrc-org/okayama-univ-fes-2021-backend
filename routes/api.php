@@ -35,9 +35,10 @@ Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::post('/answer', [AnswerController::class, 'post']);
 
     Route::get('/presents', [PresentController::class, 'get']);
+    Route::get('/present-form', [PresentFormController::class, 'get']);
+    Route::post('/present-form', [PresentFormController::class, 'post']);
 });
 
 Route::middleware(['reject'])->group(function () {
-    Route::get('/present-form', [PresentFormController::class, 'get']);
-    Route::post('/present-form', [PresentFormController::class, 'post']);
+
 });

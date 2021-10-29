@@ -25,16 +25,6 @@ class CreatePresentUserTable extends Migration
                 ->constrained('users')
                 ->onDelete('cascade');
 
-            $table->string('family_name');
-            $table->string('given_name');
-            $table->string('family_name_kana');
-            $table->string('given_name_kana');
-            $table->string('email');
-            $table->string('secondary_email');
-            $table->string('tel');
-            $table->string('postal_code');
-            $table->string('address');
-
             $table->integer('stamps');
             $table->timestamps();
         });

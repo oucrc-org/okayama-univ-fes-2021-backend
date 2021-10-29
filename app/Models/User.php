@@ -23,6 +23,15 @@ class User extends Authenticatable
         'email',
         'email_verified',
         'avatar_url',
+        'family_name',
+        'given_name',
+        'family_name_kana',
+        'given_name_kana',
+        'email',
+        'secondary_email',
+        'tel',
+        'postal_code',
+        'address',
     ];
 
     /**
