@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Present;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PresentFormRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -33,8 +34,10 @@ class PresentFormController extends Controller
         return response()->json(['success' => true, 'data' => $present]);
     }
 
-    public function post()
+    public function post(PresentFormRequest $request): JsonResponse
     {
+//        [$name, $address, $present_id] = $request->only(['name', 'address', 'present_id']);
 
+        return response()->json(['success' => true, 'data' => $request->all()]);
     }
 }
