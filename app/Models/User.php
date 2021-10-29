@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Question::class);
     }
 
-    public function present(): BelongsToMany
+    public function presents(): BelongsToMany
     {
         return $this->belongsToMany(Present::class);
     }

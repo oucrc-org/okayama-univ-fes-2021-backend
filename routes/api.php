@@ -4,6 +4,7 @@ use App\Http\Controllers\API\Present\PresentController;
 use App\Http\Controllers\API\Present\PresentFormController;
 use App\Http\Controllers\API\Question\AnswerController;
 use App\Http\Controllers\API\Question\QuestionController;
+use App\Http\Controllers\API\Twitter\TwitterController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::get('/present-form', [PresentFormController::class, 'get']);
     Route::post('/present-form', [PresentFormController::class, 'post']);
 });
+
+Route::get('/twitter',[TwitterController::class, 'get']);
 
 Route::middleware(['reject'])->group(function () {
 
