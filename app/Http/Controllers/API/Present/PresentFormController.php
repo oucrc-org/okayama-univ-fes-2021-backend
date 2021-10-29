@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\Present;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PresentFormRequest;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 
 class PresentFormController extends Controller
@@ -17,7 +19,8 @@ class PresentFormController extends Controller
 
     public function get(): JsonResponse
     {
-        $user_id = auth()->id();
+        try{
+            $user_id = auth()->id();
 
         $user = $this->mUser->query()->with('presents')->findOrFail($user_id);
 
@@ -31,11 +34,33 @@ class PresentFormController extends Controller
             ]);
         else $present = null;
 
-        return response()->json(['success' => true, 'data' => $present]);
+            return response()->json(['success' => true, 'data' => $present]);
+        }catch (ModelNotFoundException $e){
+            return response()->json(['success' => false, 'message' => $e], 500);
+        }
     }
 
-    public function post()
+    public function post(PresentFormRequest $request): JsonResponse
     {
+        try {
+            $user_id = auth()->id();
 
+            $user = $this->mUser->query()->with('present')->findOrFail($user_id);
+
+            $user->fill($request->all())->save();
+
+            $stamps = $user->questions()
+                ->select('stamp_id')
+                ->with('stamp')
+                ->get();
+
+            $user->present()->sync([$request->input('present_id') => ['stamps' => $stamps->count()]]);
+
+            return response()->json(['success' => true, 'data' => $request->all()]);
+
+        }catch (ModelNotFoundException $e)
+        {
+            return response()->json(['success' => false, 'message' => $e], 500);
+        }
     }
 }
