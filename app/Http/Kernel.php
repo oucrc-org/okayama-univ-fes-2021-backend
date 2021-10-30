@@ -5,7 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\CheckAccessToken;
 use App\Http\Middleware\CheckClient;
 use App\Http\Middleware\Register;
-use App\Http\Middleware\Rejecter;
+use App\Http\Middleware\CheckApplyPeriod;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -70,6 +70,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'user.create' => Register::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'reject' => Rejecter::class,
+        'verify.period' => CheckApplyPeriod::class,
     ];
 }

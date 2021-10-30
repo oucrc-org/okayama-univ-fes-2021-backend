@@ -19,23 +19,23 @@ class PresentFormController extends Controller
 
     public function get(): JsonResponse
     {
-        try{
+        try {
             $user_id = auth()->id();
 
-        $user = $this->mUser->query()->with('presents')->findOrFail($user_id);
+            $user = $this->mUser->query()->with('presents')->findOrFail($user_id);
 
-        if ($user->presents->first())
-            $present = $user->presents->first()->only([
-                'id',
-                'name',
-                'image_path',
-                'required_stamps',
-                'stock'
-            ]);
-        else $present = null;
+            if ($user->presents->first())
+                $present = $user->presents->first()->only([
+                    'id',
+                    'name',
+                    'image_path',
+                    'required_stamps',
+                    'stock'
+                ]);
+            else $present = null;
 
             return response()->json(['success' => true, 'data' => $present]);
-        }catch (ModelNotFoundException $e){
+        } catch (ModelNotFoundException $e) {
             return response()->json(['success' => false, 'message' => $e], 500);
         }
     }
@@ -45,7 +45,7 @@ class PresentFormController extends Controller
         try {
             $user_id = auth()->id();
 
-            $user = $this->mUser->query()->with('present')->findOrFail($user_id);
+            $user = $this->mUser->query()->with('presents')->findOrFail($user_id);
 
             $user->fill($request->all())->save();
 
@@ -54,12 +54,11 @@ class PresentFormController extends Controller
                 ->with('stamp')
                 ->get();
 
-            $user->present()->sync([$request->input('present_id') => ['stamps' => $stamps->count()]]);
+            $user->presents()->sync([$request->input('present_id') => ['stamps' => $stamps->count()]]);
 
-            return response()->json(['success' => true, 'data' => $request->all()]);
+            return response()->json(['success' => true]);
 
-        }catch (ModelNotFoundException $e)
-        {
+        } catch (ModelNotFoundException $e) {
             return response()->json(['success' => false, 'message' => $e], 500);
         }
     }
