@@ -21,7 +21,7 @@ class TwitterController extends Controller
             ->where('is_visible', true)
             ->orderByDesc('updated_at')
             ->take(6)
-            ->get(['twitter_id', 'avatar_url', 'display_name', 'comment', 'tweet_url']);
+            ->get(['twitter_id', 'avatar_url', 'display_name', 'comment', 'tweet_url', 'updated_at']);
 
         return response()->json(['success' => 'true', 'data' => $posts]);
     }
