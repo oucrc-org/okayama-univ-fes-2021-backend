@@ -41,8 +41,6 @@ Route::middleware(['auth.token', 'user.create'])->group(function () {
     Route::post('/answer', [AnswerController::class, 'post']);
 });
 
-//Route::middleware(['auth.token', 'reject'])->group(function () {
-
 Route::middleware(['auth.token', 'user.create', 'verify.period'])->group(function () {
     // 現在応募している景品を取得する
     Route::get('/present-form', [PresentFormController::class, 'get']);
