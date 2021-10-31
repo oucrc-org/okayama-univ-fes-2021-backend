@@ -19,7 +19,9 @@ class TwitterController extends Controller
     {
         $posts = $this->mPost->query()
             ->where('is_visible', true)
-            ->get(['twitter_id', 'avatar_url', 'display_name', 'comment', 'tweet_url']);
+            ->orderByDesc('updated_at')
+            ->take(6)
+            ->get(['twitter_id', 'avatar_url', 'display_name', 'comment', 'tweet_url', 'updated_at']);
 
         return response()->json(['success' => 'true', 'data' => $posts]);
     }
