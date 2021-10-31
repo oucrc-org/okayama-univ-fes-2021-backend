@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
+use App\Models\Stamp;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -15,11 +16,13 @@ class UserController extends Controller
 
     private $mUser;
     private $mQuestion;
+    private $mStamp;
 
-    function __construct(User $user, Question $question)
+    function __construct(User $user, Question $question, Stamp $stamp)
     {
         $this->mUser = $user;
         $this->mQuestion = $question;
+        $this->mStamp = $stamp;
     }
 
     function get(): JsonResponse
@@ -32,14 +35,29 @@ class UserController extends Controller
             $user = $this->mUser->query()
                 ->findOrFail($user_id);
 
+            $stamps = $this->mStamp->query()->get();
+
             /** @noinspection PhpPossiblePolymorphicInvocationInspection */
             //スタンプ情報
-            $stamps = $user->questions()
+            $user_stamps = $user->questions()
                 ->select('stamp_id')
                 ->with('stamp')
                 ->get()->map(function ($item){
                     return $item->stamp->only(['id', 'name','image_path']);
                 });
+
+            foreach ($stamps as $stamp)
+            {
+                $has_stamp = false;
+                foreach ($user_stamps as $user_stamp)
+                {
+                    if($stamp->id == $user_stamp['id']){
+                        $has_stamp = true;
+                        $stamp['has_stamp'] = true;
+                    }
+                }
+                if(!$has_stamp) $stamp['has_stamp'] = false;
+            }
 
             //本日の質問
             $target_question_id = $this->mQuestion->targetQuestion(Carbon::now())->id;
