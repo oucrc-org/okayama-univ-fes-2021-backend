@@ -23,6 +23,6 @@ class TwitterController extends Controller
             ->take(6)
             ->get(['twitter_id', 'avatar_url', 'display_name', 'comment', 'tweet_url', 'updated_at']);
 
-        return response()->json(['success' => 'true', 'data' => $posts]);
+        return response()->json(['success' => true, 'data' => $posts]);
     }
 }
