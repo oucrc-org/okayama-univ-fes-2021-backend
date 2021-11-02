@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Present;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PresentFormRequest;
+use App\Models\Present;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
@@ -42,17 +43,25 @@ class PresentFormController extends Controller
 
     public function post(PresentFormRequest $request): JsonResponse
     {
+        /**
+         * @var Present $present
+         **/
         try {
             $user_id = auth()->id();
 
             $user = $this->mUser->query()->with('presents')->findOrFail($user_id);
 
-            $user->fill($request->all())->save();
+            $user->fill($request->only(['family_name', 'given_name', 'family_name_kana', 'given_name_kana', 'secondary_email', 'tel', 'postal_code', 'address', 'present_id']))->save();
 
             $stamps = $user->questions()
                 ->select('stamp_id')
                 ->with('stamp')
                 ->get();
+
+            $present = Present::query()->findOrFail($request->input('present_id'));
+
+            if ($stamps->count() < $present->required_stamps)
+                return response()->json(['success' => false, 'message' => 'Not enough stamps.'], 400);
 
             $user->presents()->sync([$request->input('present_id') => ['stamps' => $stamps->count()]]);
 

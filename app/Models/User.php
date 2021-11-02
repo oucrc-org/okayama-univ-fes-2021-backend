@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function presents(): BelongsToMany
     {
-        return $this->belongsToMany(Present::class);
+        return $this->belongsToMany(Present::class)->withTimestamps();
     }
 }

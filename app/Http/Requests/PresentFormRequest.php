@@ -28,7 +28,6 @@ class PresentFormRequest extends FormRequest
             'given_name' => ['required'],
             'family_name_kana' => ['required'],
             'given_name_kana' => ['required'],
-            'email' => ['required'],
             'secondary_email' => ['required'],
             'tel' => ['required'],
             'postal_code' => ['required'],
