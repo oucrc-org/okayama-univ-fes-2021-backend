@@ -17,8 +17,8 @@ class StampTableSeeder extends Seeder
     {
         DB::table('stamps')->insert([
             [
-                'name' => 'ワンダーフォーゲル部',
-                'image_path' => 'https://images.microcms-assets.io/assets/7734751c51674cb2966df9edbbd3b15b/af2573b5874842149abff46eead35c34/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89.jpg',
+                'name' => 'コロナ対策応援団',
+                'image_path' => 'https://prtimes.jp/i/72793/67/resize/d72793-67-699266-2.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
