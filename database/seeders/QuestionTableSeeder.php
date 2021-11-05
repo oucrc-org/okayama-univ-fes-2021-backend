@@ -50,7 +50,7 @@ class QuestionTableSeeder extends Seeder
             ],
             [
                 'stamp_id' => 5,
-                'quiz' => 'フリーペーパー「NUTS」を作成している、キャンパスマガジンNUTS編集部。最近、okayama ebooksでの配信も始まりました。では、ebooks上にて最も新しく配信が始まった号数は？',
+                'quiz' => 'フリーペーパー「NUTS」を年に4回作成・配布している、キャンパスマガジンNUTS編集部。では、その際に用いられるソフトは？',
                 'hint' => '「部活動・サークル紹介」のページをみてみよう！',
                 'finished_at' => new Carbon('2021-11-13'),
                 'created_at' => Carbon::now(),
@@ -58,7 +58,7 @@ class QuestionTableSeeder extends Seeder
             ],
             [
                 'stamp_id' => 6,
-                'quiz' => '中国や日本の漢詩に音やリズムをつけてうたう伝統芸能である詩吟を中心に活動している吟詩部。最近、御崎宮へ詩吟の奉納を行いました。では、それは2021の何月何日に行われたでしょう？',
+                'quiz' => '部員36名（男子: 23名、女子: 13名）という大人数の吟詩部。では、以下のうち、吟詩部の活動に含まれていないものは？',
                 'hint' => '「部活動・サークル紹介」のページをみてみよう！',
                 'finished_at' => new Carbon('2021-11-14'),
                 'created_at' => Carbon::now(),
