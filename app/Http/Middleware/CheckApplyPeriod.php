@@ -19,12 +19,7 @@ class CheckApplyPeriod
     {
         $today = Carbon::now();
 
-        // ===================================
-        // TODO: 検証が終われば戻す
-        // ===================================
-        // $start = new Carbon('2021-11-16');
-
-        $start = new Carbon('2021-10-31');
+        $start = new Carbon('2021-11-16');
         $end = new Carbon('2021-11-30');
         if ($today->between($start, $end))
             return $next($request);
