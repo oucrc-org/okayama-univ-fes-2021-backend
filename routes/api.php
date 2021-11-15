@@ -1,12 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\Present\PresentController;
 use App\Http\Controllers\API\Present\PresentFormController;
-use App\Http\Controllers\API\Question\AnswerController;
-use App\Http\Controllers\API\Question\QuestionController;
 use App\Http\Controllers\API\Twitter\TwitterController;
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,10 +33,10 @@ Route::middleware('auth.client')->group(function () {
 Route::middleware(['auth.token', 'user.create'])->group(function () {
     // ユーザ情報を取得する
     Route::get('/user', [UserController::class, 'get']);
-    // 今日の問題・解答を取得する
-    Route::get('/question', [QuestionController::class, 'get']);
+    // 今日の問題・選択肢を取得する
+    //Route::get('/question', [QuestionController::class, 'get']);
     // 今日の問題を回答する
-    Route::post('/answer', [AnswerController::class, 'post']);
+    //Route::post('/answer', [AnswerController::class, 'post']);
 });
 
 Route::middleware(['auth.token', 'user.create', 'verify.period'])->group(function () {
