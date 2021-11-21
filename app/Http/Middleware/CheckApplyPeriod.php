@@ -20,7 +20,7 @@ class CheckApplyPeriod
         $today = Carbon::now();
 
         $start = new Carbon('2021-11-16');
-        $end = new Carbon('2021-11-30');
+        $end = new Carbon('2021-11-23');
         if ($today->between($start, $end))
             return $next($request);
         else
