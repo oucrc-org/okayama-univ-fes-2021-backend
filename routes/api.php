@@ -43,5 +43,5 @@ Route::middleware(['auth.token', 'user.create', 'verify.period'])->group(functio
     // 現在応募している景品を取得する
     Route::get('/present-form', [PresentFormController::class, 'get']);
     // 景品に応募する
-    Route::post('/present-form', [PresentFormController::class, 'post']);
+    //Route::post('/present-form', [PresentFormController::class, 'post']);
 });
